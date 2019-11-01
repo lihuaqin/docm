@@ -1,0 +1,10 @@
+#<This is the default kiftd server setting file. >
+#Fri Nov 01 08:21:26 CST 2019
+password.change=N
+VC.level=STANDARD
+port=8080
+mustLogin=O
+openFileChain=CLOSE
+FS.path=DEFAULT
+log=E
+buff.size=1048576

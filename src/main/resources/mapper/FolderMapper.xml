@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.docm.dao.FolderDao">
+
+	<resultMap id="BaseResultMap" type="com.docm.vo.Folder">
+		<result column="folder_id" jdbcType="VARCHAR" property="folderId" />
+		<result column="folder_name" jdbcType="VARCHAR" property="folderName" />
+		<result column="folder_creation_date" jdbcType="VARCHAR"
+			property="folderCreationDate" />
+		<result column="folder_creator" jdbcType="VARCHAR" property="folderCreator" />
+		<result column="folder_parent" jdbcType="VARCHAR" property="folderParent" />
+		<result column="folder_constraint" jdbcType="INTEGER" property="folderConstraint" />
+	</resultMap>
+
+	<select id="queryById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT * FROM t_folder WHERE folder_id = #{fid,jdbcType=VARCHAR}
+	</select>
+
+	<select id="queryByParentId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT * FROM t_folder WHERE folder_parent = #{pid,jdbcType=VARCHAR}
+	</select>
+
+	<select id="queryByParentIdAndFolderName" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT * FROM t_folder WHERE folder_parent = #{parentId,jdbcType=VARCHAR} AND
+		folder_name = #{folderName,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insertNewFolder" parameterType="com.docm.vo.Folder">
+		INSERT INTO t_folder
+		(folder_id,folder_name,folder_creation_date,folder_creator,folder_parent,folder_constraint)
+		VALUES(#{folderId,jdbcType=VARCHAR},#{folderName,jdbcType=VARCHAR},#{folderCreationDate,jdbcType=VARCHAR},#{folderCreator,jdbcType=VARCHAR},#{folderParent,jdbcType=VARCHAR},#{folderConstraint,jdbcType=INTEGER});
+	</insert>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM t_folder WHERE folder_id=#{folderId,jdbcType=VARCHAR}
+	</delete>
+
+	<update id="updateFolderNameById" parameterType="java.util.Map">
+		UPDATE t_folder SET folder_name = #{newName,jdbcType=VARCHAR} WHERE folder_id
+		= #{folderId,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateFolderConstraintById" parameterType="java.util.Map">
+		UPDATE t_folder SET folder_constraint = #{newConstraint,jdbcType=INTEGER} WHERE folder_id
+		= #{folderId,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="moveById" parameterType="java.util.Map">
+		UPDATE t_folder SET
+		folder_parent = #{locationpath,jdbcType=VARCHAR} WHERE folder_id =
+		#{folderId,jdbcType=VARCHAR}
+	</update>
+	
+
+</mapper>

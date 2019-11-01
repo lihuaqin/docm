@@ -1,0 +1,23 @@
+
+
+TIME:
+2019年11月01日 22:02:35
+TYPE:
+Event
+CONTENT:
+>IP [0:0:0:0:0:0:0:1]
+>ACCOUNT [Anonymous]
+>OPERATE [Create new folder]
+>PATH [ROOT/]
+>NAME [ttt]，CONSTRAINT [0]
+
+TIME:
+2019年11月01日 22:08:30
+TYPE:
+Event
+CONTENT:
+>IP [0:0:0:0:0:0:0:1]
+>ACCOUNT [admin]
+>OPERATE [Delete folder]
+>PATH [ROOT/]
+>NAME [ttt]
